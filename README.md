@@ -28,11 +28,12 @@
             ]
         }
 # urls file
+
+    # from django.urls import path
+    from django.urls import path, include
+
     path('api-auth/', include('rest_framework.urls'))
 
-# replacing
-        # from django.urls import path
-        from django.urls import path, include
 
 # now 
     python3 manage.py migrate
