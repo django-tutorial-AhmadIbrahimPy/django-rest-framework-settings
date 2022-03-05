@@ -1,35 +1,41 @@
 # django-rest-framework-settings
 
+# install
+    pip3 install djangorestframework
 
-install
+        or 
 
-* - pip3 install djangorestframework
-
-or 
-
-* - git clone https://github.com/encode/django-rest-framework
+    git clone https://github.com/encode/django-rest-framework
 
 
+# setting file
+        # add rest_framework
 
-Add 'rest_framework' to your INSTALLED_APPS setting.
+        INSTALLED_APPS = [
+            'django.contrib.admin',
+            'django.contrib.auth',
+            'django.contrib.contenttypes',
+            'django.contrib.sessions',
+            'django.contrib.messages',
+            'django.contrib.staticfiles',
+            
+            'rest_framework',
+        ]
 
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    
-    # Add this tag here
-    'rest_framework',
-]
+        REST_FRAMEWORK = {
+            'DEFAULT_PERMISSION_CLASSES': [
+                'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+            ]
+        }
+# urls file
+    path('api-auth/', include('rest_framework.urls'))
 
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
-}
+# replacing
+        # from django.urls import path
+        from django.urls import path, include
 
+# now 
+    python3 manage.py migrate
+    python3 manage.py runserver
+
+http://127.0.0.1:8000/api-auth/login/
